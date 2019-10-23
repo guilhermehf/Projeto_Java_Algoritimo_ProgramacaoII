@@ -3,10 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/assparremberger/Documents/NetBeansProjects/ADS3N192_Market/src/view/TelaInicial.java</file>
-            <file>file:/C:/Users/assparremberger/Documents/NetBeansProjects/ADS3N192_Market/src/dao/ClienteDAO.java</file>
-            <file>file:/C:/Users/assparremberger/Documents/NetBeansProjects/ADS3N192_Market/src/view/ListClientes.java</file>
-            <file>file:/C:/Users/assparremberger/Documents/NetBeansProjects/ADS3N192_Market/src/view/FrmCliente.java</file>
+            <file>file:/C:/Users/guilherme/Downloads/ADS3N192_Market-master%20(2)/ADS3N192_Market-master/src/view/FrmCliente.java</file>
+            <file>file:/C:/Users/guilherme/Downloads/ADS3N192_Market-master%20(2)/ADS3N192_Market-master/src/view/FrmCategorias.java</file>
+            <file>file:/C:/Users/guilherme/Downloads/ADS3N192_Market-master%20(2)/ADS3N192_Market-master/src/model/Cidade.java</file>
+            <file>file:/C:/Users/guilherme/Downloads/ADS3N192_Market-master%20(2)/ADS3N192_Market-master/src/model/Categorias.java</file>
+            <file>file:/C:/Users/guilherme/Downloads/ADS3N192_Market-master%20(2)/ADS3N192_Market-master/src/dao/ProdutoDAO.java</file>
+            <file>file:/C:/Users/guilherme/Downloads/ADS3N192_Market-master%20(2)/ADS3N192_Market-master/src/model/Produto.java</file>
+            <file>file:/C:/Users/guilherme/Downloads/ADS3N192_Market-master%20(2)/ADS3N192_Market-master/src/dao/ClienteDAO.java</file>
+            <file>file:/C:/Users/guilherme/Downloads/ADS3N192_Market-master%20(2)/ADS3N192_Market-master/src/view/FrmCidade.java</file>
+            <file>file:/C:/Users/guilherme/Downloads/ADS3N192_Market-master%20(2)/ADS3N192_Market-master/src/view/ListClientes.java</file>
+            <file>file:/C:/Users/guilherme/Downloads/ADS3N192_Market-master%20(2)/ADS3N192_Market-master/src/view/FrmProduto.java</file>
+            <file>file:/C:/Users/guilherme/Downloads/ADS3N192_Market-master%20(2)/ADS3N192_Market-master/src/view/TelaInicial.java</file>
+            <file>file:/C:/Users/guilherme/Downloads/ADS3N192_Market-master%20(2)/ADS3N192_Market-master/src/dao/CidadeDAO.java</file>
+            <file>file:/C:/Users/guilherme/Downloads/ADS3N192_Market-master%20(2)/ADS3N192_Market-master/src/dao/CategoriasDAO.java</file>
+            <file>file:/C:/Users/guilherme/Downloads/ADS3N192_Market-master%20(2)/ADS3N192_Market-master/src/view/ListCategorias.java</file>
+            <file>file:/C:/Users/guilherme/Downloads/ADS3N192_Market-master%20(2)/ADS3N192_Market-master/src/model/Cliente.java</file>
         </group>
     </open-files>
 </project-private>

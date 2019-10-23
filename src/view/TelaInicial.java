@@ -39,6 +39,12 @@ public class TelaInicial extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItemClientesCadastrar = new javax.swing.JMenuItem();
         jMenuItemClientesListar = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItemCategoriasCadastrar = new javax.swing.JMenuItem();
+        jMenuItemCategoriasListar = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Market da Turma ADS3N192");
@@ -106,6 +112,31 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu4.setText("Categorias");
+
+        jMenuItemCategoriasCadastrar.setText("Cadastrar");
+        jMenuItemCategoriasCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCategoriasCadastrarActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItemCategoriasCadastrar);
+
+        jMenuItemCategoriasListar.setText("Listar");
+        jMenu4.add(jMenuItemCategoriasListar);
+
+        jMenuBar1.add(jMenu4);
+
+        jMenu5.setText("Produto");
+
+        jMenuItem2.setText("Cadastrar");
+        jMenu5.add(jMenuItem2);
+
+        jMenuItem3.setText("Listar");
+        jMenu5.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu5);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -143,6 +174,12 @@ public class TelaInicial extends javax.swing.JFrame {
         jdpPainelInicial.add(tela);
         tela.setVisible( true );
     }//GEN-LAST:event_jMenuItemClientesListarActionPerformed
+
+    private void jMenuItemCategoriasCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCategoriasCadastrarActionPerformed
+        FrmCategorias tela = new FrmCategorias();
+        jdpPainelInicial.add(tela);
+        tela.setVisible(true);
+    }//GEN-LAST:event_jMenuItemCategoriasCadastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,8 +220,14 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItemCategoriasCadastrar;
+    private javax.swing.JMenuItem jMenuItemCategoriasListar;
     private javax.swing.JMenuItem jMenuItemCidadesCadastrar;
     private javax.swing.JMenuItem jMenuItemCidadesListar;
     private javax.swing.JMenuItem jMenuItemClientesCadastrar;
