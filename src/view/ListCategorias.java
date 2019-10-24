@@ -6,6 +6,10 @@
 package view;
 
 import dao.CategoriasDAO;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Categorias;
 
 /**
  *
@@ -18,59 +22,26 @@ public class ListCategorias extends javax.swing.JInternalFrame {
      */
     public ListCategorias() {
         initComponents();
+        carregarTabela();
     }
     
     public void carregarTabela(){
-        List<?> lista;
+        
+        List<Categorias> lista = CategoriasDAO.getCategorias();
         DefaultTableModel model = new DefaultTableModel();
-        String[] colunas = {"Código", "Nome"};
-        if ( rbPF.isSelected()) {
-            colunas[6] = "CPF";
-            lista = ClienteDAO.getClientesPF();
-        }else if(rbPJ.isSelected()){
-            colunas[6] = "CNPJ";
-            lista = ClienteDAO.getClientesPJ();
-        }else{
-            lista = ClienteDAO.getClientes();
+        String[] colunas = {"Código","Nome"};
+        
+        
+        model.setColumnIdentifiers(colunas);
+        
+        for(Categorias cate : lista){
+            Object[] linha = {cate.getId(),cate.getNome()};
+            model.addRow(linha);
         }
-            
-            model.setColumnIdentifiers(colunas);
-            
-            for (Object cli : lista) {
-                Cliente cliente = (Cliente) cli;
-                 String receberEmail = "Não";
-                    if (cliente.isReceberEmail()) 
-                        receberEmail = "Sim";
-                    Object[] linha = {};
-                
-                
-                if ( cliente.getTipo().equals( Cliente.PESSOA_FISICA ) ) {
-                    ClientePF pf = (ClientePF) cli;
-                    
-                    
-                    linha = new Object[] {
-                        pf.getId(), pf.getNome(),
-                        pf.getEmail(), receberEmail,
-                        pf.getCidade().getNome(), "Pessoa Física",
-                        pf.getCpf()};
-                   
-
-                }else{
-                    
-                    ClientePJ pj = (ClientePJ) cli;
-                    
-                    linha = new Object[] {
-                        pj.getId(), pj.getNome(),
-                        pj.getEmail(), receberEmail,
-                        pj.getCidade().getNome(), "Pessoa Física",
-                        pj.getCnpj()};
-                    
-                }
-                
-                 model.addRow( linha );
-            
-        }
-        tableClientes.setModel( model );
+        
+        tableCategorias.setModel(model);
+        
+        
 
     
     }
@@ -88,9 +59,13 @@ public class ListCategorias extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCategorias = new javax.swing.JTable();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("Lista Categorias");
 
-        btnCancel.setText("Cancelar");
+        btnCancel.setText("Deletar");
         btnCancel.setToolTipText("");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,7 +91,7 @@ public class ListCategorias extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
                 .addGap(32, 32, 32)
                 .addComponent(btnCancel)
                 .addContainerGap())
@@ -139,11 +114,11 @@ public class ListCategorias extends javax.swing.JInternalFrame {
         int linha = tableCategorias.getSelectedRow();
         
         if(linha < 0){
-            JOptionPane.showMessageDialog(this, "Você deve selecionar um cliente!");
+            JOptionPane.showMessageDialog(this, "Você deve selecionar uma categoria");
         }else{
             int id = (int) tableCategorias.getValueAt(linha, 0);
             String nome = (String) tableCategorias.getValueAt(linha, 1);
-            int resposta = JOptionPane.showConfirmDialog(this,"Confirma a exclusão do cliente" + nome + "?","Exluir Cliente", JOptionPane.YES_NO_OPTION);
+            int resposta = JOptionPane.showConfirmDialog(this,"Confirma a exclusão da categoria " + nome + "?","Exluir Categoria", JOptionPane.YES_NO_OPTION);
             
             if(resposta == JOptionPane.YES_OPTION){
                 CategoriasDAO.excluir(id);

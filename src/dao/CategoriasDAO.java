@@ -21,22 +21,22 @@ public class CategoriasDAO {
     }
     
     public static void editar(Categorias cat){
-        String query = "UPDATE cidades SET "
+        String query = "UPDATE categorias SET "
                 + " nome =  '" + cat.getNome() + "' "
                 + " WHERE id = " + cat.getId();
         Conexao.executar( query );
     }
     
-    public static void excluir(Categorias cat){
-        String query = "DELETE FROM cidades "
-                    + " WHERE id = " + cat.getId();
+    public static void excluir(int idCategoria){
+        String query = "DELETE FROM categorias "
+                    + " WHERE id = " + idCategoria;
         Conexao.executar( query );
     }
     
-    public static List<Categorias> getCidades(){
+    public static List<Categorias> getCategorias(){
         List<Categorias> lista = new ArrayList<>();
         String query = "SELECT id, nome "
-                     + " FROM cidades ORDER BY nome ";
+                     + " FROM categorias ORDER BY nome ";
         ResultSet rs = Conexao.consultar(query);
         if( rs != null ){
             try {
@@ -54,7 +54,7 @@ public class CategoriasDAO {
     
     public static Categorias getCategoriasById( int idCategorias ){
         String query = "SELECT id, nome "
-                     + " FROM cidades "
+                     + " FROM categorias "
                      + " WHERE id = " + idCategorias;
         ResultSet rs = Conexao.consultar(query);
         if( rs != null ){

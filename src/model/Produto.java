@@ -11,10 +11,19 @@ package model;
  */
 public class Produto {
     
-    private int id;
-    private String nome, email, tipo;
-    private boolean receberEmail;
-    private Produto produto;
+   private int id;
+   private String nome;
+   private double preco;
+   private double quantidade;
+   private Categorias categoria;
+
+    public Categorias getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categorias categoria) {
+        this.categoria = categoria;
+    }
 
     public int getId() {
         return id;
@@ -32,36 +41,24 @@ public class Produto {
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
+    public double getPreco() {
+        return preco;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPreco(double preco) {
+        this.preco = preco;
     }
 
-    public String getTipo() {
-        return tipo;
+    public double getQuantidade() {
+        return quantidade;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setQuantidade(double quantidade) {
+        this.quantidade = quantidade;
     }
 
-    public boolean isReceberEmail() {
-        return receberEmail;
-    }
-
-    public void setReceberEmail(boolean receberEmail) {
-        this.receberEmail = receberEmail;
-    }
-
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
+   
     
 }
+    
+

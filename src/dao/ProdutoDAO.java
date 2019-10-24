@@ -18,13 +18,12 @@ public class ProdutoDAO {
     public static void inserir(Produto produto){
         
         String query = "INSERT INTO produto "
-           + "( nome, email, receberEmail, "
-           + " tipo, codProduto) VALUES ( "
+           + "( nome, preco, quantidade, "
+           + " codCategoria) VALUES ( "
            + " '" + produto.getNome()           + "' , "
-           + " '" + produto.getEmail()          + "' , "
-           + "  " + produto.isReceberEmail()    + " , "
-           + " '" + produto.getTipo()           + "' , "
-           + "  " + produto.getProduto().getId() + " ) ";
+           + " '" + produto.getPreco()          + "' , "
+           + "  " + produto.getQuantidade()    + " , "
+           + "  " + produto.getcodCategoria().getId() + " ) ";
         JOptionPane.showMessageDialog(null, query);
         Conexao.executar(query);
         
@@ -33,10 +32,9 @@ public class ProdutoDAO {
        
         String query = "UPDATE produto SET "
            + " nome =         '" + produto.getNome()           + "' , "
-           + " email =        '" + produto.getEmail()          + "' , "
-           + " receberEmail =  " + produto.isReceberEmail()    + "  , "
-           + " tipo =         '" + produto.getTipo()           + "' , "
-           + " codProduto =     " + produto.getProduto().getId() + "    "
+           + " preco =        '" + produto.getPreco()          + "' , "
+           + " quantidade =  " + produto.getQuantidade()    + "  , "
+           + " codCategoria =     " + produto.getCodCategoria().getId() + "    "
            + " WHERE id = " + produto.getId();
         Conexao.executar(query);
         
@@ -108,22 +106,101 @@ public class ProdutoDAO {
   
     
     
-    public static List<Produto> getProduto(){
-        List<Produto> lista = new ArrayList<>();
+    public static List<ClientePF> getClientesPF(){
+        List<ClientePF> lista = new ArrayList<>();
         String query = 
-            "SELECT c.id, c.nome, c.email "
+            "SELECT c.id, c.nome, c.email, c.cpf_cnpj, "
+                + " c.receberEmail, d.id, d.nome "
+                + " FROM clientes c "
+                + " INNER JOIN cidades d "
+                + " ON c.codcidade = d.id "
+                + " WHERE tipo = '" + Cliente.PESSOA_FISICA+"' ";
+        
+        ResultSet rs = Conexao.consultar( query );
+        if( rs != null){
+            try {
+                while ( rs.next()  ) {                    
+                    Cidade cid = new Cidade();
+                    cid.setId( rs.getInt( 6 ) );
+                    cid.setNome( rs.getString( 7 ) );
+                    
+                    ClientePF cliente = new ClientePF();
+                    cliente.setTipo( Cliente.PESSOA_FISICA );
+                    cliente.setId( rs.getInt( 1 ) );
+                    cliente.setNome( rs.getString( 2 ) );
+                    cliente.setEmail( rs.getString( 3 ) );
+                    cliente.setCpf( rs.getString( 4 ) );
+                    if( rs.getInt( 5 ) == 1 ){
+                        cliente.setReceberEmail(true);
+                    }else{
+                        cliente.setReceberEmail(false);
+                    }
+                    cliente.setCidade( cid );
+                    lista.add( cliente );
+                }
+            } catch (Exception e) {
+                
+            }
+        }
+        return lista;
+    }
+    
+    public static List<ClientePJ> getClientesPJ(){
+        List<ClientePJ> lista = new ArrayList<>();
+        String query = 
+            "SELECT c.id, c.nome, c.email, c.cpf_cnpj, "
+                + " c.receberEmail, d.id, d.nome "
+                + " FROM clientes c "
+                + " INNER JOIN cidades d "
+                + " ON c.codcidade = d.id "
+                + " WHERE tipo = '" + Cliente.PESSOA_JURIDICA +"' ";
+        
+        ResultSet rs = Conexao.consultar( query );
+        if( rs != null){
+            try {
+                while ( rs.next()  ) {                    
+                    Cidade cid = new Cidade();
+                    cid.setId( rs.getInt( 6 ) );
+                    cid.setNome( rs.getString( 7 ) );
+                    
+                    ClientePJ cliente = new ClientePJ();
+                    cliente.setTipo( Cliente.PESSOA_JURIDICA );
+                    cliente.setId( rs.getInt( 1 ) );
+                    cliente.setNome( rs.getString( 2 ) );
+                    cliente.setEmail( rs.getString( 3 ) );
+                    cliente.setCnpj( rs.getString( 4 ) );
+                    if( rs.getInt( 5 ) == 1 ){
+                        cliente.setReceberEmail(true);
+                    }else{
+                        cliente.setReceberEmail(false);
+                    }
+                    cliente.setCidade( cid );
+                    lista.add( cliente );
+                }
+            } catch (Exception e) {
+                
+            }
+        }
+        return lista;
+    }
+    
+    
+    public static List<Cliente> getClientes(){
+        List<Cliente> lista = new ArrayList<>();
+        String query = 
+            "SELECT c.id, c.nome, c.email, c.cpf_cnpj, "
                 + " c.receberEmail, d.id, d.nome, c.tipo "
-                + " FROM produto c "
-                + " INNER JOIN produto d "
+                + " FROM clientes c "
+                + " INNER JOIN cidades d "
                 + " ON c.codcidade = d.id ";
         
         ResultSet rs = Conexao.consultar( query );
         if( rs != null){
             try {
                 while ( rs.next()  ) {                    
-                    Produto pro = new Produto();
-                    pro.setId( rs.getInt( 6 ) );
-                    pro.setNome( rs.getString( 7 ) );
+                    Cidade cid = new Cidade();
+                    cid.setId( rs.getInt( 6 ) );
+                    cid.setNome( rs.getString( 7 ) );
                     
                     if( rs.getString( 8 ).equals(Cliente.PESSOA_FISICA )){
                     
