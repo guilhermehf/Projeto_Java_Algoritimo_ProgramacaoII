@@ -100,8 +100,20 @@ public class FrmCliente extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Nome:");
 
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeActionPerformed(evt);
+            }
+        });
+
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("E-mail: ");
+
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Tipo:");
@@ -145,6 +157,11 @@ public class FrmCliente extends javax.swing.JInternalFrame {
         jLabel8.setText("Cidade:");
 
         cmbCidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Alvorada", "Cachoeirinha", "Canoas", "Capão da Canoa", "Porto Alegre", "Viamão" }));
+        cmbCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCidadeActionPerformed(evt);
+            }
+        });
 
         cbReceberEmail.setText("Aceito receber E-mail");
         cbReceberEmail.addActionListener(new java.awt.event.ActionListener() {
@@ -345,6 +362,18 @@ public class FrmCliente extends javax.swing.JInternalFrame {
         lblCNPJ.setVisible(true);
         txtCNPJ.setVisible(true);   
     }//GEN-LAST:event_rbPJActionPerformed
+
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeActionPerformed
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
+
+    private void cmbCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbCidadeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
