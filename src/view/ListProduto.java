@@ -5,18 +5,63 @@
  */
 package view;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import model.Produto;
+
 /**
  *
  * @author guilherme
  */
 public class ListProduto extends javax.swing.JInternalFrame {
+    
+    private List<Produto> produtoSelecionado;
 
     /**
      * Creates new form ListProduto
      */
     public ListProduto() {
         initComponents();
+        produtoSelecionado= new ArrayList<>();
+        carregarTabela();
     }
+    
+    public void carregarTabela(){
+        
+        /*DefaultTableModel model = new DefaultTableModel();
+        String[] colunas = {"Codigo","Nome","Tipo","preco"};
+        
+        
+        model.setColumnIdentifiers(colunas);
+        
+        for(Produto pro:produtosSelecionados){
+            
+            Object[] linha = { pro.getId(),pro.getNome(),pro.getTipo(),pro.getPreco()};
+            model.addRow(linha);
+             
+                   
+
+                
+        
+            
+        }
+        tableProdutosSelecionados.setModel( model );
+*/
+        
+        DefaultTableModel model = new DefaultTableModel();
+        String[] colunas = {"Código", "Nome","Preco","Quantidade","Categoria"};
+        
+        model.setColumnIdentifiers(colunas);
+        
+        for(Produto pro:produtoSelecionado){
+            
+            Object[] linha = {pro.getId(), pro.getNome(),pro.getPreco(),pro.getQuantidade(),pro.getCategoria().getNome()};
+            model.addRow(linha);
+        }
+        tableProduto.setModel(model);
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,14 +73,14 @@ public class ListProduto extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtTabela = new javax.swing.JTable();
+        tableProduto = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setTitle("Lista de Produto");
 
-        txtTabela.setModel(new javax.swing.table.DefaultTableModel(
+        tableProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -46,7 +91,7 @@ public class ListProduto extends javax.swing.JInternalFrame {
                 "Nome", "Preco", "Quantidade", "CodCategoria", "Tipo"
             }
         ));
-        jScrollPane1.setViewportView(txtTabela);
+        jScrollPane1.setViewportView(tableProduto);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,6 +116,6 @@ public class ListProduto extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable txtTabela;
+    private javax.swing.JTable tableProduto;
     // End of variables declaration//GEN-END:variables
 }

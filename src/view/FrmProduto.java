@@ -5,6 +5,13 @@
  */
 package view;
 
+import dao.CategoriasDAO;
+import dao.ProdutoDAO;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import model.Categorias;
+import model.Produto;
+
 /**
  *
  * @author guilherme
@@ -16,6 +23,25 @@ public class FrmProduto extends javax.swing.JInternalFrame {
      */
     public FrmProduto() {
         initComponents();
+        carregarCategoria();
+    }
+    
+    public void carregarCategoria(){
+        
+        
+        
+        List<Categorias> listaCategorias = CategoriasDAO.getCategorias();
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        Categorias fake = new Categorias();
+        fake.setId(0);
+        fake.setNome("Selecione...");
+        model.addElement(fake);
+        for(Categorias cat: listaCategorias){
+            model.addElement(cat);
+        }
+        cmbCategoria.setModel(model);
+        
+        
     }
 
     /**
@@ -33,15 +59,12 @@ public class FrmProduto extends javax.swing.JInternalFrame {
         txtNome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtPreco = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtQuantidade = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtCodCategoria = new javax.swing.JTextField();
+        cmbCategoria = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -62,24 +85,20 @@ public class FrmProduto extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Preco");
 
-        jLabel5.setText("Tipo");
-
-        jRadioButton1.setText("Produto Fisico");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                btnSalvarActionPerformed(evt);
             }
         });
-
-        jRadioButton2.setText("Produto Digital");
-
-        jButton1.setText("Salvar");
 
         jButton2.setText("Limpar");
 
         jLabel7.setText("Quantidade");
 
         jLabel8.setText("CodCategoria");
+
+        cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,14 +110,14 @@ public class FrmProduto extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCodCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(59, 59, 59)
-                        .addComponent(jButton1)
+                        .addComponent(btnSalvar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -111,18 +130,9 @@ public class FrmProduto extends javax.swing.JInternalFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jLabel2))
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel4)
                             .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtPreco)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(5, 5, 5)
-                                    .addComponent(jRadioButton1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jRadioButton2)
-                                    .addGap(0, 0, Short.MAX_VALUE))))))
+                            .addComponent(txtPreco, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -144,23 +154,15 @@ public class FrmProduto extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
-                        .addGap(27, 27, 27))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtCodCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalvar)
+                    .addComponent(jButton2))
+                .addGap(27, 27, 27))
         );
 
         pack();
@@ -170,24 +172,92 @@ public class FrmProduto extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+       /*String erro = "";
+        String nome = txtNome.getText();
+        Cidade cid = (Cidade) cmbCidade.getSelectedItem();
+        if( nome.isEmpty() ){
+            erro += "Nome\n";
+        }
+        if( cid.getId() == 0 ){
+            erro +="Cidade\n";
+        }
+        String cpf_cnpj = "";
+        if( rbPF.isSelected() ){
+            cpf_cnpj = txtCPF.getText();
+            if( cpf_cnpj.substring(13).equals(" ") ){
+                erro += "CPF\n";
+            }
+        }
+        if( rbPJ.isSelected() ){
+            cpf_cnpj = txtCNPJ.getText();
+            if( cpf_cnpj.substring(17).equals(" ") ){
+                erro += "CNPJ\n";
+            }
+        }
+        
+        if( ! erro.isEmpty() ){
+            JOptionPane.showMessageDialog(this, 
+                "Você esqueceu de preencher os seguintes campos\n"
+                + erro );
+        }else{
+            
+           // Cliente cli = new Cliente();
+            
+            if( rbPF.isSelected() ){
+                ClientePF pf = new ClientePF();
+                pf.setNome( nome );
+                pf.setCidade( cid );
+                pf.setEmail( txtEmail.getText() );
+                pf.setReceberEmail( cbReceberEmail.isSelected() );
+                pf.setCpf( cpf_cnpj );
+                pf.setTipo( Cliente.PESSOA_FISICA );
+                ClienteDAO.inserir( pf );
+            }else{
+                ClientePJ pj = new ClientePJ();
+                pj.setNome( nome );
+                pj.setCidade( cid );
+                pj.setEmail( txtEmail.getText() );
+                pj.setReceberEmail( cbReceberEmail.isSelected() );
+                pj.setCnpj( cpf_cnpj );
+                pj.setTipo( Cliente.PESSOA_JURIDICA);
+                ClienteDAO.inserir( pj );
+            }
+            limpar();
+        }*/
+       
+       /*Produto pro = new Produto();
+       
+       
+       pro.setNome(txtNome.getText());
+       pro.setTipo(txtTipo.getText());
+       pro.setPreco(Double.valueOf(txtPreco.getText()));
+       ProdutoDAO.inserir(pro);
+       this.dispose();*/
+       
+        Produto pro = new Produto();
+        //Falta o tipo
+        pro.setNome(txtNome.getText());
+        pro.setPreco(Double.valueOf(txtPreco.getText()));
+        pro.setQuantidade(Double.valueOf(txtQuantidade.getText()));
+        pro.setCategoria( (Categorias) cmbCategoria.getSelectedItem()   );
+        ProdutoDAO.inserir(pro);
+        this.dispose();
+        
+        
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JComboBox<String> cmbCategoria;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JTextField txtCodCategoria;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPreco;
     private javax.swing.JTextField txtQuantidade;

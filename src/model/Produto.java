@@ -16,6 +16,7 @@ public class Produto {
    private double preco;
    private double quantidade;
    private Categorias categoria;
+   
 
     public Categorias getCategoria() {
         return categoria;
